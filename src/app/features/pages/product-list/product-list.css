@@ -1,0 +1,28 @@
+.product-form {
+  padding: 1.5rem;
+  max-width: 400px;
+}
+
+.field {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+.field-error {
+  color: #b00020;
+  font-size: 0.85rem;
+}
+
+.error {
+  color: #b00020;
+  margin-bottom: 1rem;
+}
