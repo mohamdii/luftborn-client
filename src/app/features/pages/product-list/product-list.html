@@ -1,30 +1,35 @@
 <div class="product-list">
   <h1>Products</h1>
+  @if (loading()) {
+    <div>Loading products...</div>
+  }
+  @if (errorMessage()) {
+    <div class="error">{{ errorMessage() }}</div>
+  }
 
-  <div *ngIf="loading()">Loading products...</div>
-
-  <div *ngIf="errorMessage()" class="error">{{ errorMessage() }}</div>
-
-  <table *ngIf="!loading() && !errorMessage()" class="product-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Stock</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products()">
-        <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.price | currency }}</td>
-        <td>{{ product.stockQuantity }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div *ngIf="!loading() && !errorMessage() && products().length === 0">
-    No products found.
-  </div>
+  @if (!loading() && !errorMessage() && products().length > 0) {
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products(); track product.id) {
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price | currency: 'EGP' }}</td>
+            <td>{{ product.stockQuantity }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @if (!loading() && !errorMessage() && products().length === 0) {
+    <div>No products found.</div>
+  }
 </div>

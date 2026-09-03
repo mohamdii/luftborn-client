@@ -1,19 +1,19 @@
 import { Component, signal } from '@angular/core';
 import { ProductDto } from '../../../core/models/product.model';
 import { Product } from '../../../core/services/product.service';
-
+import { CurrencyPipe } from '@angular/common';
 @Component({
-  imports: [],
+  imports: [CurrencyPipe],
   selector: 'app-product-list',
   styleUrl: './product-list.css',
   templateUrl: './product-list.html',
 })
 export class ProductList {
   products = signal<ProductDto[]>([]);
-  loading = signal<boolean>(true) ;
+  loading = signal<boolean>(true);
   errorMessage = signal<string | null>(null);
 
-  constructor(private productService: Product) { }
+  constructor(private productService: Product) {}
 
   ngOnInit() {
     this.productService.getAll().subscribe({
@@ -24,9 +24,7 @@ export class ProductList {
       error: (error) => {
         this.errorMessage.set('Failed to load products. Please try again later.');
         this.loading.set(false);
-      }
+      },
     });
-
   }
-
 }
