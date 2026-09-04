@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ApiResponse } from '../models/api-response.model';
 import { map, Observable } from 'rxjs';
 import { CreateProductDto, ProductDto, UpdateProductDto } from '../models/product.model';
 import { environment } from '../../../../environment/enivronment';
-@Service()
-export class Product {
+@Injectable({
+  providedIn: 'root',
+})
+export class ProductService {
   private http = inject(HttpClient);
   private baseUrl = `${environment.apiUrl}/product`;
   contstructor() {}
@@ -28,10 +30,10 @@ export class Product {
       .pipe(map((response) => response.data));
   }
 
-  update(id: number, dto: UpdateProductDto): Observable<void> {
+  update(id: number, dto: UpdateProductDto): Observable<ProductDto | null> {
     return this.http
-      .put<ApiResponse<object>>(`${this.baseUrl}/${id}`, dto)
-      .pipe(map(() => undefined));
+      .put<ApiResponse<ProductDto>>(`${this.baseUrl}/${id}`, dto)
+      .pipe(map((response) => response.data ?? null));
   }
 
   delete(id: number): Observable<void> {

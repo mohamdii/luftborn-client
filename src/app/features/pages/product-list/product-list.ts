@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ProductDto } from '../../../core/models/product.model';
-import { Product } from '../../../core/services/product.service';
+import { ProductService } from '../../../core/services/product.service';
 import { CurrencyPipe } from '@angular/common';
 @Component({
   imports: [CurrencyPipe],
@@ -13,7 +13,7 @@ export class ProductList {
   loading = signal<boolean>(true);
   errorMessage = signal<string | null>(null);
 
-  constructor(private productService: Product) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.productService.getAll().subscribe({
