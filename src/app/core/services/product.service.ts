@@ -10,6 +10,6 @@ import { GenericRepository } from './generic-repository.service';
 })
 export class ProductService extends GenericRepository<ProductDto> {
   constructor(http: HttpClient) {
-    super(http, `${environment.apiUrl}/products`);
+    super(http, `${environment.apiUrl}/product`);
   }
 }
