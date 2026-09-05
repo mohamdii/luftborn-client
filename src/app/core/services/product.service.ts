@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiResponse } from '../models/api-response.model';
 import { map, Observable } from 'rxjs';
 import { CreateProductDto, ProductDto, UpdateProductDto } from '../models/product.model';
-import { environment } from '../../../../environment/enivronment';
+import { environment } from '../../../../environments/enivronment';
 @Injectable({
   providedIn: 'root',
 })

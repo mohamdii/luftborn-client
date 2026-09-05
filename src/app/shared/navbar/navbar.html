@@ -1,0 +1,11 @@
+<nav class="app-nav">
+  <a class="brand" routerLink="/products">Luftborn</a>
+  <div class="nav-actions">
+  @if (!isLoggedIn) {
+    <button class="button button-secondary" (click)="login()">Sign in</button>
+  }
+  @if (isLoggedIn) {
+    <button class="button button-secondary" (click)="logout()">Sign out</button>
+  }
+  </div>
+</nav>

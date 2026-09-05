@@ -1,5 +1,5 @@
 import { LogLevel, Configuration } from '@azure/msal-browser';
-import { environment } from '../../environment/enivronment';
+import { environment } from '../../environments/enivronment';
 
 export const msalConfig: Configuration = {
   auth: {
@@ -20,5 +20,5 @@ export const msalConfig: Configuration = {
 };
 
 export const apiScopes = {
-  scopes: [`api:///${environment.entra.clientId}/access_as_user`],
+  scopes: [`api://${environment.entra.apiClientId}/access_as_user`],
 };

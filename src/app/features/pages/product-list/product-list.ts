@@ -2,8 +2,9 @@ import { Component, signal } from '@angular/core';
 import { ProductDto } from '../../../core/models/product.model';
 import { ProductService } from '../../../core/services/product.service';
 import { CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 @Component({
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   selector: 'app-product-list',
   styleUrl: './product-list.css',
   templateUrl: './product-list.html',

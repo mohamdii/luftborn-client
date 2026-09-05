@@ -1,27 +1,20 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MsalService } from '@azure/msal-angular';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { MsalService, MsalBroadcastService } from '@azure/msal-angular';
+import { InteractionStatus, AccountInfo } from '@azure/msal-browser';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
+import { environment } from '../../environments/enivronment';
+import { Navbar } from "./shared/navbar/navbar";
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [ RouterOutlet, CommonModule, Navbar],
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
-export class App {
-  protected readonly title = signal('luftborn-client');
-
-  constructor(private MSALService: MsalService) {}
-
-  get isLoggedIn() {
-    return this.MSALService.instance.getAllAccounts().length > 0;
-  }
-
-  login() {
-    this.MSALService.loginRedirect();
-  }
-
-  logout() {
-    this.MSALService.logoutRedirect();
-  }
-}
+export class App 
+{}

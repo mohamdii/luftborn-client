@@ -1,5 +1,7 @@
 <div class="product-form">
+  <p class="eyebrow">Catalog</p>
   <h1>{{ isEditMode ? 'Edit Product' : 'New Product' }}</h1>
+  <p class="page-description">Add the details for this product below.</p>
 
   @if (errorMessage) {
     <div class="error">{{ errorMessage }}</div>
@@ -65,7 +67,7 @@
       }
     </div>
 
-    <button
+    <button class="button button-primary"
       type="submit"
       [disabled]="submitting"
     >
