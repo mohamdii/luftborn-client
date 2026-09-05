@@ -27,13 +27,7 @@ export const routes: Routes = [
     component: ProductList,
     canActivate: [MsalGuard],
   },
-
-  {
-    path: 'not-found',
-    loadComponent: () =>
-      import('./shared/notfound/not-found').then((m) => m.NotFound),
-  },
-
+  
   {
     path: '**',
     redirectTo: 'not-found',
