@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   apiUrl: 'https://localhost:7275/api',
-  entra: {
+   entra: {
     tenantId: '4c3b8057-710f-4704-8419-ed93dfea3c1d',
-    clientId: '578231cc-78df-4ea2-bd32-1c4fd8f12ca8',
+    clientId: 'e1144178-408a-44f0-83d5-a6df0140f8db',
   },
 };

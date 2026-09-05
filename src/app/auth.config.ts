@@ -3,7 +3,7 @@ import { environment } from '../../environment/enivronment';
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: 'your-Test-client-id',
+    clientId: environment.entra.clientId,
     authority: `https://login.microsoftonline.com/${environment.entra.tenantId}`,
     redirectUri: 'http://localhost:4200',
   },
@@ -20,5 +20,5 @@ export const msalConfig: Configuration = {
 };
 
 export const apiScopes = {
-  scopes: [`api://your-api-client-id/access_as_user`],
+  scopes: [`api:///${environment.entra.clientId}/access_as_user`],
 };
