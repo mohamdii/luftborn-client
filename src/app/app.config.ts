@@ -51,7 +51,7 @@ export function initializeMsal(msalInstance: IPublicClientApplication) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(withInterceptorsFromDi(), withInterceptors([errorInterceptor])),
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
     { provide: MSAL_INSTANCE, useFactory: MSALInstanceFactory },
     { provide: MSAL_GUARD_CONFIG, useFactory: MSALGuardConfigFactory },
