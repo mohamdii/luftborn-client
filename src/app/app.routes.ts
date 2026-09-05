@@ -8,5 +8,6 @@ export const routes: Routes = [
   { path: 'products/new', component: ProductForm, canActivate: [MsalGuard] },
   { path: 'products/edit/:id', component: ProductForm, canActivate: [MsalGuard] },
   { path: '', redirectTo: 'products', pathMatch: 'full' },
-  {path:'not-found', loadComponent: () => import('./shared/notfound/not-found').then(m => m.NotFound)},
+  { path: 'not-found', loadComponent: () => import('./shared/notfound/not-found').then((m) => m.NotFound) },
+  { path: '**', redirectTo: 'not-found' },
 ];
