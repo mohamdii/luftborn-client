@@ -1,1 +1,10 @@
+<nav>
+  @if (!isLoggedIn) {
+    <button (click)="login()">Sign in</button>
+  }
+  @if (isLoggedIn) {
+    <button (click)="logout()">Sign out</button>
+  }
+</nav>
+
 <router-outlet></router-outlet>
