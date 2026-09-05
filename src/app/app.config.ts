@@ -1,6 +1,11 @@
 import { ApplicationConfig, APP_INITIALIZER } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  HTTP_INTERCEPTORS,
+  withInterceptors,
+} from '@angular/common/http';
 import {
   MsalService,
   MsalGuard,
@@ -18,6 +23,7 @@ import {
 import { routes } from './app.routes';
 import { msalConfig, apiScopes } from './auth.config';
 import { environment } from '../../environments/enivronment';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication(msalConfig);
@@ -45,7 +51,7 @@ export function initializeMsal(msalInstance: IPublicClientApplication) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withInterceptors([errorInterceptor])),
     { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
     { provide: MSAL_INSTANCE, useFactory: MSALInstanceFactory },
     { provide: MSAL_GUARD_CONFIG, useFactory: MSALGuardConfigFactory },
